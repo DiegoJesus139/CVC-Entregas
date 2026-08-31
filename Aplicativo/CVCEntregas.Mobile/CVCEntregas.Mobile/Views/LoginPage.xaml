@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVCEntregas.Mobile.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F5F5F5">
+
+    <ScrollView VerticalOptions="Center">
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <!-- Cabeçalho / Logo -->
+            <Label Text="CVC ENTREGAS"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="#1E88E5"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Materiais de Construção"
+                   FontSize="16"
+                   TextColor="#757575"
+                   HorizontalOptions="Center"
+                   Margin="0, -15, 0, 20" />
+
+            <!-- Formulário de Acesso -->
+            <Frame CornerRadius="10" 
+                   Padding="20" 
+                   HasShadow="True"
+                   BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="Acesse sua conta"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#333333" />
+
+                    <!-- Campo Usuário -->
+                    <Entry x:Name="TxtUsuario"
+                           Placeholder="Usuário"
+                           Keyboard="Text" />
+
+                    <!-- Campo Senha -->
+                    <Entry x:Name="TxtSenha"
+                           Placeholder="Senha"
+                           IsPassword="True" />
+
+                    <!-- Botão Entrar -->
+                    <Button Text="ENTRAR"
+                            BackgroundColor="#1E88E5"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            Margin="0, 10, 0, 0"
+                            Clicked="OnEntrarClicked" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+    

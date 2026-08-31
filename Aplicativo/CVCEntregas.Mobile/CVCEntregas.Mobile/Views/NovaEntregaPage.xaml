@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVCEntregas.Mobile.Views.NovaEntregaPage"
+             Title="Cadastrar Novo Pedido"
+             BackgroundColor="#F4F6F8">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Lançar Pedido do Caderno"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#1E88E5"
+                   HorizontalOptions="Center" />
+
+            <Frame CornerRadius="10" Padding="20" HasShadow="True" BackgroundColor="White">
+                <VerticalStackLayout Spacing="15">
+
+                    <!-- Cliente -->
+                    <Label Text="Nome do Cliente / Depósito" FontAttributes="Bold" TextColor="#333333"/>
+                    <Entry x:Name="TxtCliente" Placeholder="Ex: Depósito Constrular ou Marcos" />
+
+                    <!-- Endereço -->
+                    <Label Text="Endereço de Entrega" FontAttributes="Bold" TextColor="#333333"/>
+                    <Entry x:Name="TxtEndereco" Placeholder="Ex: Rua das Flores, 123 - Centro" />
+
+                    <!-- Material -->
+                    <Label Text="Material / Produto" FontAttributes="Bold" TextColor="#333333"/>
+                    <Picker x:Name="PckMaterial" Title="Selecione o produto">
+                        <Picker.Items>
+                            <x:String>Areia Fina</x:String>
+                            <x:String>Pedra / Pedrisco</x:String>
+                            <x:String>Tijolo Comum (Pacote c/ 10 un.)</x:String>
+                            <x:String>Tijolo Cerâmico (9x19)</x:String>
+                            <x:String>Tijolo Cerâmico (11x5)</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!-- Quantidade e Unidade de Medida -->
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Quantidade" FontAttributes="Bold" TextColor="#333333"/>
+                            <Entry x:Name="TxtQuantidade" Keyboard="Numeric" Placeholder="Ex: 200 ou 2" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Unidade" FontAttributes="Bold" TextColor="#333333"/>
+                            <Picker x:Name="PckUnidade" Title="Selecione">
+                                <Picker.Items>
+                                    <x:String>Unidades / Peças</x:String>
+                                    <x:String>Pacotes</x:String>
+                                    <x:String>m³ (Granel)</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Observações -->
+                    <Label Text="Observações (Opcional)" FontAttributes="Bold" TextColor="#333333"/>
+                    <Entry x:Name="TxtObservacao" Placeholder="Ex: Descarregar no fundo da obra" />
+
+                    <!-- Botão Salvar -->
+                    <Button Text="SALVAR E ENVIAR PARA O MOTORISTA"
+                            BackgroundColor="#1E88E5"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            HeightRequest="50"
+                            Margin="0, 10, 0, 0"
+                            Clicked="OnSalvarPedidoClicked" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+    

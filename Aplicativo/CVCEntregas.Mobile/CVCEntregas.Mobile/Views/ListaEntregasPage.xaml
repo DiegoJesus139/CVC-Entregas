@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CVCEntregas.Mobile.Views.ListaEntregasPage"
+             Title="Entregas do Dia"
+             BackgroundColor="#F4F6F8">
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Cabeçalho com Botão de Adicionar -->
+        <Frame Grid.Row="0" BackgroundColor="#1E88E5" CornerRadius="0" Padding="15" HasShadow="True">
+            <Grid ColumnDefinitions="*, Auto">
+                <Label Text="CVC Entregas" 
+                       TextColor="White" 
+                       FontSize="20" 
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center"/>
+
+                <Button Grid.Column="1" 
+                        Text="+ Novo Pedido" 
+                        BackgroundColor="#42A5F5" 
+                        TextColor="White" 
+                        FontAttributes="Bold"
+                        Clicked="OnNovoPedidoClicked"/>
+            </Grid>
+        </Frame>
+
+        <!-- Lista de Entregas -->
+        <CollectionView Grid.Row="1" x:Name="CvEntregas" Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="8">
+
+                            <!-- Cliente e Status -->
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Text="{Binding ClienteNome}" FontSize="18" FontAttributes="Bold" TextColor="#333333"/>
+                                <Frame Grid.Column="1" Padding="6,2" CornerRadius="5" HasShadow="False" BackgroundColor="{Binding CorStatus}">
+                                    <Label Text="{Binding Status}" TextColor="White" FontSize="12" FontAttributes="Bold"/>
+                                </Frame>
+                            </Grid>
+
+                            <!-- Descrição dos Materiais -->
+                            <Label Text="{Binding DescricaoItens}" FontSize="14" TextColor="#555555" FontAttributes="Bold"/>
+
+                            <!-- Endereço -->
+                            <Label Text="{Binding Endereco}" FontSize="13" TextColor="#757575"/>
+
+                            <HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
+                                <!-- Botão Abrir GPS -->
+                                <Button Text="Abrir no Maps" 
+                                        BackgroundColor="#42A5F5" 
+                                        TextColor="White" 
+                                        HeightRequest="40"
+                                        CornerRadius="6"
+                                        Clicked="OnAbrirMapsClicked"/>
+
+                                <!-- Botão Concluir Entrega -->
+                                <Button Text="Marcar como Entregue" 
+                                        BackgroundColor="#4CAF50" 
+                                        TextColor="White" 
+                                        HeightRequest="40"
+                                        CornerRadius="6"
+                                        Clicked="OnConcluirEntregaClicked"/>
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
+    
