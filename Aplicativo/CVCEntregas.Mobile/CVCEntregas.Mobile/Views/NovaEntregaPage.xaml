@@ -2,34 +2,44 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CVCEntregas.Mobile.Views.NovaEntregaPage"
-             Title="Cadastrar Novo Pedido"
+             Title="Novo Pedido - Areieiro CVC"
              BackgroundColor="#F4F6F8">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Label Text="Lançar Pedido do Caderno"
-                   FontSize="22"
-                   FontAttributes="Bold"
-                   TextColor="#1E88E5"
-                   HorizontalOptions="Center" />
+            <!-- Cabeçalho em Estilo Placa CVC -->
+            <Frame BackgroundColor="#FFC107" CornerRadius="12" Padding="15" HasShadow="True" BorderColor="#212121">
+                <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                    <Label Text="AREIEIRO" FontSize="16" FontAttributes="Bold" TextColor="#212121" HorizontalOptions="Center" />
+                    <Label Text="CVC" FontSize="28" FontAttributes="Bold" TextColor="#D32F2F" HorizontalOptions="Center" />
+                    <Label Text="Cadastro de Pedidos" FontSize="12" TextColor="#212121" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
 
             <Frame CornerRadius="10" Padding="20" HasShadow="True" BackgroundColor="White">
                 <VerticalStackLayout Spacing="15">
 
                     <!-- Cliente -->
-                    <Label Text="Nome do Cliente / Depósito" FontAttributes="Bold" TextColor="#333333"/>
-                    <Entry x:Name="TxtCliente" Placeholder="Ex: Depósito Constrular ou Marcos" />
+                    <Label Text="Nome do Cliente / Depósito" FontAttributes="Bold" TextColor="#212121"/>
+                    <Entry x:Name="TxtCliente" 
+                           Placeholder="Ex: Depósito Constrular ou Marcos" 
+                           TextColor="#212121" 
+                           PlaceholderColor="#757575" />
 
                     <!-- Endereço -->
-                    <Label Text="Endereço de Entrega" FontAttributes="Bold" TextColor="#333333"/>
-                    <Entry x:Name="TxtEndereco" Placeholder="Ex: Rua das Flores, 123 - Centro" />
+                    <Label Text="Endereço de Entrega" FontAttributes="Bold" TextColor="#212121"/>
+                    <Entry x:Name="TxtEndereco" 
+                           Placeholder="Ex: Rua das Flores, 123 - Centro" 
+                           TextColor="#212121" 
+                           PlaceholderColor="#757575" />
 
                     <!-- Material -->
-                    <Label Text="Material / Produto" FontAttributes="Bold" TextColor="#333333"/>
-                    <Picker x:Name="PckMaterial" Title="Selecione o produto">
+                    <Label Text="Material / Produto" FontAttributes="Bold" TextColor="#212121"/>
+                    <Picker x:Name="PckMaterial" Title="Selecione o produto" TitleColor="#757575" TextColor="#212121">
                         <Picker.Items>
                             <x:String>Areia Fina</x:String>
+                            <x:String>Areia Média / Grossa</x:String>
                             <x:String>Pedra / Pedrisco</x:String>
                             <x:String>Tijolo Comum (Pacote c/ 10 un.)</x:String>
                             <x:String>Tijolo Cerâmico (9x19)</x:String>
@@ -40,13 +50,17 @@
                     <!-- Quantidade e Unidade de Medida -->
                     <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
                         <VerticalStackLayout Grid.Column="0">
-                            <Label Text="Quantidade" FontAttributes="Bold" TextColor="#333333"/>
-                            <Entry x:Name="TxtQuantidade" Keyboard="Numeric" Placeholder="Ex: 200 ou 2" />
+                            <Label Text="Quantidade" FontAttributes="Bold" TextColor="#212121"/>
+                            <Entry x:Name="TxtQuantidade" 
+                                   Keyboard="Numeric" 
+                                   Placeholder="Ex: 200 ou 2" 
+                                   TextColor="#212121" 
+                                   PlaceholderColor="#757575" />
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="1">
-                            <Label Text="Unidade" FontAttributes="Bold" TextColor="#333333"/>
-                            <Picker x:Name="PckUnidade" Title="Selecione">
+                            <Label Text="Unidade" FontAttributes="Bold" TextColor="#212121"/>
+                            <Picker x:Name="PckUnidade" Title="Selecione" TitleColor="#757575" TextColor="#212121">
                                 <Picker.Items>
                                     <x:String>Unidades / Peças</x:String>
                                     <x:String>Pacotes</x:String>
@@ -56,13 +70,26 @@
                         </VerticalStackLayout>
                     </Grid>
 
-                    <!-- Observações -->
-                    <Label Text="Observações (Opcional)" FontAttributes="Bold" TextColor="#333333"/>
-                    <Entry x:Name="TxtObservacao" Placeholder="Ex: Descarregar no fundo da obra" />
+                    <!-- Atribuição de Motorista -->
+                    <Label Text="Atribuir ao Motorista" FontAttributes="Bold" TextColor="#212121"/>
+                    <Picker x:Name="PckMotorista" Title="Escolha o motorista responsável" TitleColor="#757575" TextColor="#212121">
+                        <Picker.Items>
+                            <x:String>Motorista 1</x:String>
+                            <x:String>Motorista 2</x:String>
+                            <x:String>Motorista 3</x:String>
+                        </Picker.Items>
+                    </Picker>
 
-                    <!-- Botão Salvar -->
-                    <Button Text="SALVAR E ENVIAR PARA O MOTORISTA"
-                            BackgroundColor="#1E88E5"
+                    <!-- Observações -->
+                    <Label Text="Observações (Opcional)" FontAttributes="Bold" TextColor="#212121"/>
+                    <Entry x:Name="TxtObservacao" 
+                           Placeholder="Ex: Descarregar no fundo da obra" 
+                           TextColor="#212121" 
+                           PlaceholderColor="#757575" />
+
+                    <!-- Botão Salvar Vermelho CVC -->
+                    <Button Text="SALVAR E ENVIAR PARA MOTORISTA"
+                            BackgroundColor="#D32F2F"
                             TextColor="White"
                             FontAttributes="Bold"
                             CornerRadius="8"
@@ -77,4 +104,3 @@
     </ScrollView>
 
 </ContentPage>
-    

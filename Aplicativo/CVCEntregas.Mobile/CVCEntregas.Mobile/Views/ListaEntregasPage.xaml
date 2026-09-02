@@ -1,73 +1,101 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CVCEntregas.Mobile.Views.ListaEntregasPage"
-             Title="Entregas do Dia"
-             BackgroundColor="#F4F6F8">
+             x:Class="CVCEntregas.Mobile.Views.LoginPage"
+             Title="Login - Areieiro CVC"
+             BackgroundColor="Transparent"
+             NavigationPage.HasNavigationBar="False">
 
-    <Grid RowDefinitions="Auto, *">
-        <!-- Cabeçalho com Botão de Adicionar -->
-        <Frame Grid.Row="0" BackgroundColor="#1E88E5" CornerRadius="0" Padding="15" HasShadow="True">
-            <Grid ColumnDefinitions="*, Auto">
-                <Label Text="CVC Entregas" 
-                       TextColor="White" 
-                       FontSize="20" 
-                       FontAttributes="Bold" 
-                       VerticalOptions="Center"/>
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <!-- 1. Imagem de Fundo (fundo.png) -->
+        <Image Source="fundo"
+               Aspect="AspectFill"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand"
+               BackgroundColor="Transparent"/>
 
-                <Button Grid.Column="1" 
-                        Text="+ Novo Pedido" 
-                        BackgroundColor="#42A5F5" 
-                        TextColor="White" 
-                        FontAttributes="Bold"
-                        Clicked="OnNovoPedidoClicked"/>
-            </Grid>
-        </Frame>
+        <!-- 2. Formulário Centralizado -->
+        <VerticalStackLayout Padding="25" Spacing="20" MaximumWidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
 
-        <!-- Lista de Entregas -->
-        <CollectionView Grid.Row="1" x:Name="CvEntregas" Margin="10">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Margin="5" Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="White">
-                        <VerticalStackLayout Spacing="8">
+            <!-- Logo / Placa CVC -->
+            <Border BackgroundColor="#FFC107" 
+                    Stroke="#212121"
+                    StrokeThickness="1"
+                    Padding="15" 
+                    HorizontalOptions="Center" 
+                    WidthRequest="240">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                    <Label Text="AREIEIRO" FontSize="16" FontAttributes="Bold" TextColor="#212121" HorizontalOptions="Center" />
+                    <Label Text="CVC" FontSize="34" FontAttributes="Bold" TextColor="#D32F2F" HorizontalOptions="Center" />
+                    <Label Text="SISTEMA DE ENTREGAS" FontSize="10" FontAttributes="Bold" TextColor="#212121" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
 
-                            <!-- Cliente e Status -->
-                            <Grid ColumnDefinitions="*, Auto">
-                                <Label Text="{Binding ClienteNome}" FontSize="18" FontAttributes="Bold" TextColor="#333333"/>
-                                <Frame Grid.Column="1" Padding="6,2" CornerRadius="5" HasShadow="False" BackgroundColor="{Binding CorStatus}">
-                                    <Label Text="{Binding Status}" TextColor="White" FontSize="12" FontAttributes="Bold"/>
-                                </Frame>
-                            </Grid>
+            <!-- Card de Login -->
+            <Border Padding="22" 
+                    BackgroundColor="White" 
+                    Stroke="#E0E0E0"
+                    StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="18"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="15">
 
-                            <!-- Descrição dos Materiais -->
-                            <Label Text="{Binding DescricaoItens}" FontSize="14" TextColor="#555555" FontAttributes="Bold"/>
+                    <Label Text="Acesse sua Conta" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="#212121" 
+                           HorizontalOptions="Center" />
 
-                            <!-- Endereço -->
-                            <Label Text="{Binding Endereco}" FontSize="13" TextColor="#757575"/>
+                    <!-- Campo Usuário -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Usuário" FontAttributes="Bold" TextColor="#212121"/>
+                        <Border Padding="0" Stroke="#CCCCCC" StrokeThickness="1" BackgroundColor="#F9F9F9">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtUsuario" 
+                                   Placeholder="Digite seu usuário" 
+                                   TextColor="#212121" 
+                                   PlaceholderColor="#757575"
+                                   Margin="10, 0" />
+                        </Border>
+                    </VerticalStackLayout>
 
-                            <HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
-                                <!-- Botão Abrir GPS -->
-                                <Button Text="Abrir no Maps" 
-                                        BackgroundColor="#42A5F5" 
-                                        TextColor="White" 
-                                        HeightRequest="40"
-                                        CornerRadius="6"
-                                        Clicked="OnAbrirMapsClicked"/>
+                    <!-- Campo Senha -->
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Senha" FontAttributes="Bold" TextColor="#212121"/>
+                        <Border Padding="0" Stroke="#CCCCCC" StrokeThickness="1" BackgroundColor="#F9F9F9">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
+                            <Entry x:Name="TxtSenha" 
+                                   IsPassword="True" 
+                                   Placeholder="Digite sua senha" 
+                                   TextColor="#212121" 
+                                   PlaceholderColor="#757575"
+                                   Margin="10, 0" />
+                        </Border>
+                    </VerticalStackLayout>
 
-                                <!-- Botão Concluir Entrega -->
-                                <Button Text="Marcar como Entregue" 
-                                        BackgroundColor="#4CAF50" 
-                                        TextColor="White" 
-                                        HeightRequest="40"
-                                        CornerRadius="6"
-                                        Clicked="OnConcluirEntregaClicked"/>
-                            </HorizontalStackLayout>
+                    <!-- Botão Entrar -->
+                    <Button Text="ENTRAR NO SISTEMA"
+                           BackgroundColor="#D32F2F"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="15"
+                           CornerRadius="8"
+                           HeightRequest="50"
+                           Margin="0, 10, 0, 0"
+                           Clicked="OnEntrarClicked" />
 
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
     </Grid>
+
 </ContentPage>
-    
