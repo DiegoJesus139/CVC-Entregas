@@ -6,7 +6,6 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        // Altere esta linha para abrir a LoginPage primeiro:
         MainPage = new Views.LoginPage();
     }
 }

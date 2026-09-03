@@ -1,101 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CVCEntregas.Mobile.Views.LoginPage"
-             Title="Login - Areieiro CVC"
-             BackgroundColor="Transparent"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="CVCEntregas.Mobile.Views.ListaEntregasPage"
+             Title="Lista de Entregas - Areieiro CVC">
 
-    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <!-- 1. Imagem de Fundo (fundo.png) -->
-        <Image Source="fundo"
-               Aspect="AspectFill"
-               HorizontalOptions="FillAndExpand"
-               VerticalOptions="FillAndExpand"
-               BackgroundColor="Transparent"/>
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Topo com Identificação e Botão do Administrador -->
+        <Border Grid.Row="0" BackgroundColor="#212121" Padding="15">
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Grid.Column="0"
+                       Text="Entregas Pendentes" 
+                       TextColor="White" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" />
 
-        <!-- 2. Formulário Centralizado -->
-        <VerticalStackLayout Padding="25" Spacing="20" MaximumWidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center">
+                <!-- Botão visível apenas para o Administrador -->
+                <Button Grid.Column="1"
+                        x:Name="BtnNovaEntrega"
+                        Text="+ Nova"
+                        BackgroundColor="#512BD4"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="8"
+                        Padding="10,0"
+                        HeightRequest="36"
+                        Clicked="OnNovaEntregaClicked"
+                        IsVisible="False" />
+            </Grid>
+        </Border>
 
-            <!-- Logo / Placa CVC -->
-            <Border BackgroundColor="#FFC107" 
-                    Stroke="#212121"
-                    StrokeThickness="1"
-                    Padding="15" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="240">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="15"/>
-                </Border.StrokeShape>
-                <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                    <Label Text="AREIEIRO" FontSize="16" FontAttributes="Bold" TextColor="#212121" HorizontalOptions="Center" />
-                    <Label Text="CVC" FontSize="34" FontAttributes="Bold" TextColor="#D32F2F" HorizontalOptions="Center" />
-                    <Label Text="SISTEMA DE ENTREGAS" FontSize="10" FontAttributes="Bold" TextColor="#212121" HorizontalOptions="Center" />
-                </VerticalStackLayout>
-            </Border>
-
-            <!-- Card de Login -->
-            <Border Padding="22" 
-                    BackgroundColor="White" 
-                    Stroke="#E0E0E0"
-                    StrokeThickness="1">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="18"/>
-                </Border.StrokeShape>
-                <VerticalStackLayout Spacing="15">
-
-                    <Label Text="Acesse sua Conta" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="#212121" 
-                           HorizontalOptions="Center" />
-
-                    <!-- Campo Usuário -->
+        <!-- Lista de Entregas -->
+        <ScrollView Grid.Row="1" Padding="15">
+            <VerticalStackLayout Spacing="15">
+                <Border Padding="15" Stroke="#E0E0E0" StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10"/>
+                    </Border.StrokeShape>
                     <VerticalStackLayout Spacing="5">
-                        <Label Text="Usuário" FontAttributes="Bold" TextColor="#212121"/>
-                        <Border Padding="0" Stroke="#CCCCCC" StrokeThickness="1" BackgroundColor="#F9F9F9">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="8"/>
-                            </Border.StrokeShape>
-                            <Entry x:Name="TxtUsuario" 
-                                   Placeholder="Digite seu usuário" 
-                                   TextColor="#212121" 
-                                   PlaceholderColor="#757575"
-                                   Margin="10, 0" />
-                        </Border>
+                        <Label Text="Carga: Areia Fina (HR)" FontAttributes="Bold" TextColor="#212121"/>
+                        <Label Text="Status: Aguardando Saída" TextColor="#D32F2F"/>
                     </VerticalStackLayout>
-
-                    <!-- Campo Senha -->
-                    <VerticalStackLayout Spacing="5">
-                        <Label Text="Senha" FontAttributes="Bold" TextColor="#212121"/>
-                        <Border Padding="0" Stroke="#CCCCCC" StrokeThickness="1" BackgroundColor="#F9F9F9">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="8"/>
-                            </Border.StrokeShape>
-                            <Entry x:Name="TxtSenha" 
-                                   IsPassword="True" 
-                                   Placeholder="Digite sua senha" 
-                                   TextColor="#212121" 
-                                   PlaceholderColor="#757575"
-                                   Margin="10, 0" />
-                        </Border>
-                    </VerticalStackLayout>
-
-                    <!-- Botão Entrar -->
-                    <Button Text="ENTRAR NO SISTEMA"
-                           BackgroundColor="#D32F2F"
-                           TextColor="White"
-                           FontAttributes="Bold"
-                           FontSize="15"
-                           CornerRadius="8"
-                           HeightRequest="50"
-                           Margin="0, 10, 0, 0"
-                           Clicked="OnEntrarClicked" />
-
-                </VerticalStackLayout>
-            </Border>
-
-        </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
     </Grid>
-
 </ContentPage>
